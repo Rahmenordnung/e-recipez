@@ -32,6 +32,8 @@ class RecipesTest < ActionDispatch::IntegrationTest
     # assert_match @chef.chefname, response.body
     assert_select 'a[href=?]', edit_recipe_path(@recipe), text: "Edit this recipe"
     assert_select 'a[href=?]', recipe_path(@recipe), text: "Delete this recipe"
+    assert_select 'a[href=?]', recipes_path, text: "Return to recipes listing"
+
   end 
   
   test "create new valid recipe" do
@@ -55,7 +57,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
       post recipes_path, params: { recipe: { name: " ", description: " " } }
     end
     assert_template 'recipes/new'
-    assert_select 'h2.panel-title' ##aufmerksamkeit mit css einstimmigkeit
-    assert_select 'div.panel-body'  ## aufmerksamkeit mit css einstimmigkeit
+    #assert_select 'h2.panel-title' ##aufmerksamkeit mit css einstimmigkeit
+    #assert_select 'div.panel-body'  ## aufmerksamkeit mit css einstimmigkeit
   end
 end

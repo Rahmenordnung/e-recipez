@@ -26,6 +26,8 @@ class RecipeTestEdit < ActionDispatch::IntegrationTest
     # follow_redirect!
     assert_not flash.empty?
     @recipe.reload
+    assert_match updated_name, @recipe.name
+    assert_match updated_description, @recipe.description
    
   end
 end
