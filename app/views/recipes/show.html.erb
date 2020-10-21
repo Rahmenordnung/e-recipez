@@ -1,0 +1,24 @@
+<div class="col-md-8 well">
+    <hr />
+    <div class="card mb-3">
+      <%= render 'shared_pages/page_title', title: @recipe.name %>
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text"><strong>Steps: </strong><%= simple_format(@recipe.description) %></p>
+        <div class="pull-right">
+        <p class="center">
+          <em>Created by:</em>
+        </p>
+        <p class="center">
+          <%= link_to gravatar_for(@recipe.chef), recipes_path %>
+        </p>
+        <p class="center">
+          <span class="quiet"><small><%= @recipe.chef.chefname.capitalize %></small></span>
+          <div class="pull-right"><%= time_ago_in_words(@recipe.created_at) %> ago</div>
+        </p>
+      </div>
+        
+      </div>
+    </div>
+
+

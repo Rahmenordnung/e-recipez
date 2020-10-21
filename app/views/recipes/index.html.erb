@@ -1,17 +1,18 @@
-<h1 align="center">Listing all Recipes</h1>
+ <h1 class="center"><%= render 'shared_pages/page_title', title: 'showing all recipes' %></h1>
 <hr />
 
 <% @recipes.each do |recipe| %>
   <div class="row">
     <div class="col-md-2">
-      <section class="center">
-
+      <section class="chef_info center">
+        <%= gravatar_for(recipe.chef, size: 120) %>
       </section>
     </div>
     <div class="col-md-8 well">
         <div class="card">
           <div class="card-header">
-            <%= recipe.name %>
+
+            <%= link_to recipe.name, recipe_path(recipe) %>
           </div>
           <div class="card-body">
             <h5 class="card-title">Special title treatment</h5>
@@ -20,8 +21,7 @@
             <a href="#" class="btn btn-primary">Go somewhere</a>
           </div>
         </div>
-        
-        
+
       <h4></h4>
       <p><%= truncate(recipe.description, length: 150) %></p>
       <p>
