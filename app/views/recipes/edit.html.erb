@@ -1,10 +1,9 @@
-<h1 class="center"><%= render 'shared_pages/page_title', title: 'create a new recipe' %></h1>
-<hr />
+<%= render 'shared_pages/page_title', title: "edit an existing recipe" %>
 
 <% if @recipe.errors.any? %>
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <div class="panel alert alert-danger">
+      <div class="panel panel-danger">
         <div class="panel-heading">
           <h2 class="panel-title">
             <%= pluralize(@recipe.errors.count, "error") %>
@@ -30,7 +29,7 @@
         <div class="control-label col-md-2">
           <%= f.label :name %>
         </div>
-        <div class="col-md-8 ">
+        <div class="col-md-8">
           <%= f.text_field :name, class: "form-control", placeholder: "Name of recipe", autofocus: true %>
         </div>
       </div>
