@@ -3,8 +3,9 @@ require 'test_helper'
 class RecipeTest < ActiveSupport::TestCase
     
     def setup
-        @chef = Chef.create!(chefname: "tudor", email: "tudor@example.com")
-        @recipe = @chef.recipes.build(name: "meat", description: "meat makes you stronger than a vegetable")
+        @chef = Chef.create!(chefname: "tudor", email: "tudor@example.com",
+                             password: "password", password_confirmation: "password")
+        @recipe = @chef.recipes.build(name: "vegetable", description: "great vegetable recipe")  
     end
     
     test "recipe without chef can´t exist" do
@@ -34,6 +35,11 @@ class RecipeTest < ActiveSupport::TestCase
     test "description shouldn´t be more than 500 characters" do
         @recipe.description= "x" * 501
         assert_not @recipe.valid?
+    end
+    
+    test "password should be atleast 5 character" do
+        @chef.password = @chef.password_confirmation = "x" * 4
+        assert_not @chef.valid?
     end
     
     
