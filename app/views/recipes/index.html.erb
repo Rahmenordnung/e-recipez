@@ -1,32 +1,4 @@
  <h1 class="center"><%= render 'shared_pages/page_title', title: 'showing all recipes' %></h1>
 <hr />
 
-<% @recipes.each do |recipe| %>
-  <div class="row">
-    <div class="col-md-2">
-      <section class="chef_info center">
-        <%= gravatar_for(recipe.chef, size: 120) %>
-      </section>
-    </div>
-    <div class="col-md-8 well">
-        <div class="card">
-          <div class="card-header">
-
-            <%= link_to recipe.name, recipe_path(recipe) %>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">      <%= truncate(recipe.description, length: 150) %></p>
-            <span class="quiet"><small>Created <%= time_ago_in_words(recipe.created_at) %> ago</small></span>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-
-      <h4></h4>
-      <p><%= truncate(recipe.description, length: 150) %></p>
-      <p>
-        
-      </p> 
-    </div>
-  </div>
-<% end %>
+<%= render 'recipe', obj: @recipes %>
