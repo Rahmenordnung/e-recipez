@@ -10,8 +10,12 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <li class="nav-link"><%= link_to "Chefs", chefs_path %></li>
       </li>
+      <li class="nav-item">
+        <li class="nav-link"><%= link_to "All Recipes", recipes_path %></li>
+      </li>
+      <% if logged_in? %>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Recipes 
@@ -26,25 +30,29 @@
       <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
       </li>
+      <% end %>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
-  
+   
   <ul class="nav navbar-nav navbar-right mr-3 ml-3 navbar-light">
-        <li class="mr-3"><a href="#">Link</a></li>
+    <% if logged_in? %>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_chef.chefname.capitalize %>'s Profile <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
+              <li><%= link_to "View your profile", chef_path(current_chef) %></li>
+              <li><%= link_to "Edit your profile", edit_chef_path(current_chef) %></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "Log out", logout_path, method: :delete %></li>
+            </ul>
         </li>
+        <% else %>
+          <li><%= link_to "Log in", login_path %></li> 
       </ul>
+      <% end %>
   
   </div>
 </nav>

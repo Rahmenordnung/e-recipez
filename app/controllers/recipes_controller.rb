@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update]
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.paginate(page: params[:page], per_page: 5)
   end
   
   def show
@@ -15,6 +15,7 @@ class RecipesController < ApplicationController
   
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.chef = current_chef
     @recipe.chef = Chef.first
     if @recipe.save
       flash[:success] = "Recipe was created successfully!"
